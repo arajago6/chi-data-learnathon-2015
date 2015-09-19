@@ -399,23 +399,23 @@ $(function () {
             type: 'spline'
         },
         title: {
-            text: 'A Chart'
+            text: 'Graffiti Requests by Day'
         },
         xAxis: {
-            categories: ['A', 'B', 'C', 'D', 'E'],
+            categories: creation_dates,
         },
         yAxis: {
             min: 0,
             title: {
-                text: 'foo',
+                text: 'Counts',
             },
         },
         credits: {
             enabled: false
         },
         series: [{
-            name: 'foo',
-            data: [1, 2, 3, 2, 1]
+            name: 'Requests',
+            data: count_by_date
         }]
     });
 
@@ -446,6 +446,11 @@ $(function () {
 
 
     var map = L.map('map').setView([41.88, -87.65], 12);
-    var layer = new L.StamenTileLayer("toner");
-
+    var layer = new L.StamenTileLayer("watercolor");
+  map.addLayer(layer); 
+var locations = graffiti_data['cement_graffiti_latlong']
+for (var i=0; i<locations.length; i++){
+  marker = new L.circleMarker(locations[i],{color:"#D63821"}).setRadius(2).addTo(map);
+}
+  
 });
